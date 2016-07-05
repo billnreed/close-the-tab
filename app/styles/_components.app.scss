@@ -1,0 +1,19 @@
+.app {
+    &.state-choose {
+        .die {
+            border-color: #ccc;
+            color: #ccc;
+        }
+
+        .roll {
+            background: #ccc;
+        }
+    }
+
+    &.state-roll {
+        .tile {
+            border-color: #ccc;
+            color: #ccc;
+        }
+    }
+}

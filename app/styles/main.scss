@@ -11,3 +11,13 @@
 @import "components.tile";
 
 @import "trumps.spacing";
+
+
+.debug-state {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    background: yellow;
+    color: black;
+}

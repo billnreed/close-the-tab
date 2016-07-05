@@ -1,15 +1,17 @@
 import States from './states.js'
-import Die from './die.js'
+import Dice from './dice.js'
 
 class App {
     constructor() {
+        this.appEl = document.querySelector('.app');
         this.state = null;
+        this.chosenTiles = [];
 
         this._registerEventListeners();
     }
 
     start() {
-        this.state = States.ROLL;
+        this._transitionTo(States.ROLL);
     }
 
     _registerEventListeners() {
@@ -26,15 +28,42 @@ class App {
         document.querySelector('.roll').addEventListener('click', () => {
             if (this.state === States.ROLL) {
                 //roll dice
-                const dieValue1 = Die.roll();
-                const dieValue2 = Die.roll();
-                document.querySelector('.die--1').textContent = dieValue1;
-                document.querySelector('.die--2').textContent = dieValue2;
+                Dice.roll1();
+                Dice.roll2();
 
                 //check for loss
+
+
                 //go to States.CHOOSE
+                this._transitionTo(States.CHOOSE);
             }
         });
+    }
+
+    _transitionTo(state) {
+        switch (state) {
+            case States.CHOOSE:
+                this.state = state;
+                this.chosenTiles = [];
+
+                this.appEl.classList.remove('state-choose');
+                this.appEl.classList.remove('state-roll');
+                this.appEl.classList.remove('state-lose');
+                this.appEl.classList.remove('state-win');
+                this.appEl.classList.add('state-choose');
+
+                break;
+            case States.ROLL:
+                this.state = state;
+
+                this.appEl.classList.remove('state-choose');
+                this.appEl.classList.remove('state-roll');
+                this.appEl.classList.remove('state-lose');
+                this.appEl.classList.remove('state-win');
+                this.appEl.classList.add('state-roll');
+
+                break;
+        }
     }
 }
 

@@ -1,7 +1,14 @@
 .roll {
-    font-size: 28px;
+    font-size: 32px;
 
-    padding: 10px;
+    width: 3em;
+    height: 3em;
+    padding: 1em 0;
+
+    background: #000000;
+    color: #fff;
+    border: 0;
+    border-radius: $unit;
 
     cursor: pointer;
 }
