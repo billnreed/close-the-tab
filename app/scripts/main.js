@@ -1,1 +1,3 @@
-console.log('\'Allo \'Allo!');
+import App from './modules/app.js';
+
+App.start();
