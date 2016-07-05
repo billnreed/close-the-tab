@@ -1,0 +1,7 @@
+{
+  "name": "close-the-tab",
+  "private": true,
+  "dependencies": {
+    "reset-css": "~2.0.2011012603"
+  }
+}
