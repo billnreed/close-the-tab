@@ -16,9 +16,18 @@ class App {
 
     _registerEventListeners() {
         Array.from(document.querySelectorAll('.tile')).forEach(tile => {
-            tile.addEventListener('click', () => {
+            tile.addEventListener('click', (e) => {
                 if (this.state === States.CHOOSE) {
                     //choose tiles
+                    e.target.classList.toggle('is-selected');
+
+                    const tileNumber = Number(e.target.attributes.getNamedItem('data-number').value);
+                    if (this.chosenTiles.indexOf(tileNumber) != -1) {
+                        this.chosenTiles.splice(this.chosenTiles.indexOf(tileNumber), 1);
+                    } else {
+                        this.chosenTiles.push(tileNumber);
+                    }
+
                     //check for win
                     //go to States.ROLL
                 }
@@ -52,6 +61,13 @@ class App {
                 this.appEl.classList.remove('state-win');
                 this.appEl.classList.add('state-choose');
 
+                Array.from(document.querySelectorAll('.tile')).forEach(tile => {
+                    tile.classList.add('is-active');
+                });
+
+                //debug
+                document.querySelector('.debug-state').textContent = 'choose';
+
                 break;
             case States.ROLL:
                 this.state = state;
@@ -61,6 +77,13 @@ class App {
                 this.appEl.classList.remove('state-lose');
                 this.appEl.classList.remove('state-win');
                 this.appEl.classList.add('state-roll');
+
+                Array.from(document.querySelectorAll('.tile')).forEach(tile => {
+                    tile.classList.remove('is-active');
+                });
+
+                //debug
+                document.querySelector('.debug-state').textContent = 'roll';
 
                 break;
         }

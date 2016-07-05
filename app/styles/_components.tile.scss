@@ -8,4 +8,12 @@
 
     border: 1px solid #000;
     border-radius: 10px;
+
+    &.is-active {
+        cursor: pointer;
+    }
+
+    &.is-selected {
+        border-width: 3px;
+    }
 }
