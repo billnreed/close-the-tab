@@ -6,7 +6,6 @@ class App {
     constructor() {
         this.appEl = document.querySelector('.app');
         this._state = null;
-        this.chosenTiles = [];
 
         this._registerEventListeners();
     }
@@ -20,21 +19,20 @@ class App {
             tile.addEventListener('click', (e) => {
                 if (this._state === States.CHOOSE) {
                     Tiles.toggleTile(e.target);
-
-                    //check for win
-
-
-                    //go to States.ROLL
                 }
             });
         });
 
         document.querySelector('.use-tiles').addEventListener('click', () => {
             if (this._state === States.CHOOSE) {
-                console.log('dice sum', Dice.getDiceSum())
-                console.log('selected tile sum', Tiles.getSelectedTileSum());
                 if (Dice.getDiceSum() === Tiles.getSelectedTileSum()) {
                     Tiles.useSelectedTiles();
+
+                    //if win, go to win state
+
+                    //if lose, go to lose state
+
+                    //else, go to roll state
                     this._transitionTo(States.ROLL);
                 }
             }
@@ -96,6 +94,6 @@ class App {
     }
 }
 
-const shutTheBox = new App();
+const closeTheTab = new App();
 
-export default shutTheBox;
+export default closeTheTab;
