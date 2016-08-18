@@ -16,4 +16,8 @@
     &.is-selected {
         border-width: 3px;
     }
+
+    &.is-used {
+        visibility: hidden;
+    }
 }

@@ -1,10 +1,11 @@
 import States from './states.js'
 import Dice from './dice.js'
+import Tiles from './tiles.js'
 
 class App {
     constructor() {
         this.appEl = document.querySelector('.app');
-        this.state = null;
+        this._state = null;
         this.chosenTiles = [];
 
         this._registerEventListeners();
@@ -15,27 +16,32 @@ class App {
     }
 
     _registerEventListeners() {
-        Array.from(document.querySelectorAll('.tile')).forEach(tile => {
+        Tiles.tiles.forEach(tile => {
             tile.addEventListener('click', (e) => {
-                if (this.state === States.CHOOSE) {
-                    //choose tiles
-                    e.target.classList.toggle('is-selected');
-
-                    const tileNumber = Number(e.target.attributes.getNamedItem('data-number').value);
-                    if (this.chosenTiles.indexOf(tileNumber) != -1) {
-                        this.chosenTiles.splice(this.chosenTiles.indexOf(tileNumber), 1);
-                    } else {
-                        this.chosenTiles.push(tileNumber);
-                    }
+                if (this._state === States.CHOOSE) {
+                    Tiles.toggleTile(e.target);
 
                     //check for win
+
+
                     //go to States.ROLL
                 }
             });
         });
 
+        document.querySelector('.use-tiles').addEventListener('click', () => {
+            if (this._state === States.CHOOSE) {
+                console.log('dice sum', Dice.getDiceSum())
+                console.log('selected tile sum', Tiles.getSelectedTileSum());
+                if (Dice.getDiceSum() === Tiles.getSelectedTileSum()) {
+                    Tiles.useSelectedTiles();
+                    this._transitionTo(States.ROLL);
+                }
+            }
+        });
+
         document.querySelector('.roll').addEventListener('click', () => {
-            if (this.state === States.ROLL) {
+            if (this._state === States.ROLL) {
                 //roll dice
                 Dice.roll1();
                 Dice.roll2();
@@ -52,8 +58,8 @@ class App {
     _transitionTo(state) {
         switch (state) {
             case States.CHOOSE:
-                this.state = state;
-                this.chosenTiles = [];
+                this._state = state;
+                Tiles.clearSelected();
 
                 this.appEl.classList.remove('state-choose');
                 this.appEl.classList.remove('state-roll');
@@ -70,7 +76,7 @@ class App {
 
                 break;
             case States.ROLL:
-                this.state = state;
+                this._state = state;
 
                 this.appEl.classList.remove('state-choose');
                 this.appEl.classList.remove('state-roll');

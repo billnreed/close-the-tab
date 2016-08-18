@@ -1,15 +1,25 @@
 class Dice {
     constructor() {
-        this.die1 = document.querySelector('.die--1');
-        this.die2 = document.querySelector('.die--2');
+        this._die1 = document.querySelector('.die--1');
+        this._die2 = document.querySelector('.die--2');
+        this._die1Value = 0;
+        this._die2Value = 0;
     }
 
     roll1() {
-        this.die1.textContent = this._generateDieValue();
+        const dieValue = this._generateDieValue();
+        this._die1.textContent = dieValue;
+        this._die1Value = dieValue;
     }
 
     roll2() {
-        this.die2.textContent = this._generateDieValue();
+        const dieValue = this._generateDieValue();
+        this._die2.textContent = dieValue;
+        this._die2Value = dieValue;
+    }
+
+    getDiceSum() {
+        return this._die1Value + this._die2Value;
     }
 
     _generateDieValue() {
