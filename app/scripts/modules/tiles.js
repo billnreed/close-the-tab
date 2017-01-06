@@ -1,80 +1,56 @@
-import TileView from './views/tile-view';
-import TileModel from './models/tile-model';
+import Tile from './tile';
 
 class Tiles {
     constructor() {
-        this._tileViews = [];
-        this._tileModels = [];
+        this._tiles = [];
 
         for (let tileValue = 1; tileValue <= 9; tileValue++) {
             const selector = `.tile[data-number='${tileValue}']`;
-            this._tileViews.push(new TileView(selector));
-            this._tileModels.push(new TileModel(tileValue));
+            this._tiles.push(new Tile(selector, tileValue));
         }
     }
 
     registerClickListeners(callback, context) {
-      this._tileViews.forEach(tileView => {
-        tileView.registerClickListener(callback, context)
+      this._tiles.forEach(tile => {
+        tile.registerClickListener(callback, context);
       });
     }
 
     toggleTile(tileEl) {
-        this._getTileViewForElement(tileEl).toggleSelected();
-        this._getTileModelForElement(tileEl).toggleSelected();
+        const tile = this._getTileForElement(tileEl);
+        tile.toggleSelected();
     }
 
     useSelectedTiles() {
-        this._getSelectedTileViews().forEach(tileView => {
-          tileView.markUsed();
-        });
-
-        this._getSelectedTileModels().forEach(tileModel => {
-          tileModel.markUsed();
+        this._getSelectedTiles().forEach(selectedTile => {
+          selectedTile.markUsed();
         });
     }
 
     markAllTilesActive() {
-      this._tileViews.forEach(tileView => tileView.markActive());
+      this._tiles.forEach(tile => tile.markActive());
     }
 
     markAllTilesNotActive() {
-      this._tileViews.forEach(tileView => tileView.markNotActive());
+      this._tiles.forEach(tile => tile.markNotActive());
     }
 
     getSelectedTileSum() {
-        return this._getSelectedTileModels().reduce((sum, tileModel) => sum + tileModel.getValue(), 0);
+        return this._getSelectedTiles().reduce((sum, tile) => sum + tile.getValue(), 0);
     }
 
     clearSelected() {
-        this._tileModels.forEach(tileModel => tileModel.markNotSelected());
-        this._tileViews.forEach(tileView => tileView.markNotSelected());
+        this._tiles.forEach(tile => tile.markNotSelected());
     }
 
-    _getSelectedTileViews() {
-      const selectedTileViews = [];
-      this._tileModels.forEach((tileModel, index) => {
-        if (tileModel.isSelected()) {
-          selectedTileViews.push(this._tileViews[index]);
-        }
-      });
-      return selectedTileViews;
+    _getSelectedTiles() {
+      return this._tiles.filter(tile => tile.isSelected());
     }
 
-    _getSelectedTileModels() {
-      return this._tileModels.filter(tileModel => tileModel.isSelected());
-    }
-
-    _getTileViewForElement(el) {
+    _getTileForElement(el) {
         const tileElValue = Number(el.attributes.getNamedItem('data-number').value);
-        return this._tileViews[tileElValue - 1];
-    }
-
-    _getTileModelForElement(el) {
-        const tileElValue = Number(el.attributes.getNamedItem('data-number').value);
-        return this._tileModels[tileElValue - 1];
+        return this._tiles[tileElValue - 1];
     }
 }
 
-const tiles = new Tiles();
-export default tiles;
+export default new Tiles();
