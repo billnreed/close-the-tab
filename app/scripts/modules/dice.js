@@ -1,28 +1,21 @@
-import DieView from './views/die-view';
-import DieModel from './models/die-model';
+import Die from './die';
 
 class Dice {
     constructor() {
-        this._die1View = new DieView('.die--1');
-        this._die1Model = new DieModel();
-
-        this._die2View = new DieView('.die--2');
-        this._die2Model = new DieModel();
+        this._die1 = new Die('.die--1');
+        this._die2 = new Die('.die--2');
     }
 
     rollTwoDice() {
         const die1Value = this._generateDieValue();
         const die2Value = this._generateDieValue();
 
-        this._die1View.setValue(die1Value);
-        this._die1Model.setValue(die1Value);
-
-        this._die2View.setValue(die2Value);
-        this._die2Model.setValue(die2Value);
+        this._die1.setValue(die1Value);
+        this._die2.setValue(die2Value);
     }
 
     getDiceSum() {
-        return this._die1Model.getValue() + this._die2Model.getValue();
+        return this._die1.getValue() + this._die2.getValue();
     }
 
     _generateDieValue() {
@@ -30,6 +23,4 @@ class Dice {
     }
 }
 
-const dice = new Dice();
-
-export default dice;
+export default new Dice();
