@@ -41,6 +41,10 @@ class Tile {
   markNotActive() {
     this._view.markNotActive();
   }
+
+  isNotUsed() {
+    return this._model.isNotUsed();
+  }
 }
 
 export default Tile;

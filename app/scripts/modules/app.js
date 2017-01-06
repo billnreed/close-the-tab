@@ -31,7 +31,7 @@ class App {
                     //if lose, go to lose state
 
                     //else, go to roll state
-                    this._transitionTo(States.ROLL);
+                    this._transitionTo(States.DECIDE);
                 }
             }
         });
@@ -76,6 +76,21 @@ class App {
 
                 //debug
                 document.querySelector('.debug-state').textContent = 'roll';
+
+                break;
+            case States.DECIDE:
+                //debug
+                document.querySelector('.debug-state').textContent = 'decide';
+
+                this._state = state;
+
+                const remainingTileCount = Tiles.getRemainingCount();
+                if (remainingTileCount == 0) {
+                  // this._transitionTo(States.WIN);
+                  console.log('win');
+                } else {
+                  this._transitionTo(States.ROLL);
+                }
 
                 break;
         }

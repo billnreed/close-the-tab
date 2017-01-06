@@ -24,6 +24,10 @@ class TileModel {
   markUsed() {
     this._used = true;
   }
+
+  isNotUsed() {
+    return !this._used;
+  }
 }
 
 export default TileModel;

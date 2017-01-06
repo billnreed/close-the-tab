@@ -43,6 +43,10 @@ class Tiles {
         this._tiles.forEach(tile => tile.markNotSelected());
     }
 
+    getRemainingCount() {
+      return this._tiles.filter(tile => tile.isNotUsed()).length;
+    }
+
     _getSelectedTiles() {
       return this._tiles.filter(tile => tile.isSelected());
     }
