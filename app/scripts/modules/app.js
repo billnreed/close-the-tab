@@ -26,12 +26,7 @@ class App {
                 if (Dice.getDiceSum() === Tiles.getSelectedTileSum()) {
                     Tiles.useSelectedTiles();
 
-                    //if win, go to win state
-
-                    //if lose, go to lose state
-
-                    //else, go to roll state
-                    this._transitionTo(States.DECIDE);
+                    this._transitionTo(States.CHECK_WIN);
                 }
             }
         });
@@ -40,14 +35,36 @@ class App {
             if (this._state === States.ROLL) {
                 Dice.rollTwoDice();
 
-                this._transitionTo(States.CHOOSE);
+                this._transitionTo(States.EVALUATE_ROLL);
             }
         });
     }
 
     _transitionTo(state) {
         switch (state) {
+            case States.ROLL:
+                this.debug('roll');
+
+                this._state = state;
+
+                this.appEl.classList.remove('state-choose');
+                this.appEl.classList.remove('state-roll');
+                this.appEl.classList.remove('state-lose');
+                this.appEl.classList.remove('state-win');
+                this.appEl.classList.add('state-roll');
+
+                Tiles.markAllTilesNotActive();
+                break;
+            case States.EVALUATE_ROLL:
+                this.debug('evaluate_roll');
+
+                this._state = state;
+
+                this._transitionTo(States.CHOOSE);
+                break;
             case States.CHOOSE:
+                this.debug('choose');
+
                 this._state = state;
                 Tiles.clearSelected();
 
@@ -58,42 +75,27 @@ class App {
                 this.appEl.classList.add('state-choose');
 
                 Tiles.markAllTilesActive();
-
-                //debug
-                document.querySelector('.debug-state').textContent = 'choose';
-
                 break;
-            case States.ROLL:
-                this._state = state;
-
-                this.appEl.classList.remove('state-choose');
-                this.appEl.classList.remove('state-roll');
-                this.appEl.classList.remove('state-lose');
-                this.appEl.classList.remove('state-win');
-                this.appEl.classList.add('state-roll');
-
-                Tiles.markAllTilesNotActive();
-
-                //debug
-                document.querySelector('.debug-state').textContent = 'roll';
-
-                break;
-            case States.DECIDE:
-                //debug
-                document.querySelector('.debug-state').textContent = 'decide';
+            case States.CHECK_WIN:
+                this.debug('check_win')
 
                 this._state = state;
 
                 const remainingTileCount = Tiles.getRemainingCount();
                 if (remainingTileCount == 0) {
-                  // this._transitionTo(States.WIN);
-                  console.log('win');
+                    // this._transitionTo(States.WIN);
+                    console.log('win');
                 } else {
-                  this._transitionTo(States.ROLL);
+                    this._transitionTo(States.ROLL);
                 }
 
                 break;
         }
+    }
+
+    debug(state) {
+        console.log(state);
+        document.querySelector('.debug-state').textContent = state;
     }
 }
 
