@@ -42,7 +42,6 @@ class App {
             if (this._state === States.ROLL) {
                 Dice.rollTwoDice();
 
-                //go to States.CHOOSE
                 this._transitionTo(States.CHOOSE);
             }
         });
@@ -60,9 +59,7 @@ class App {
                 this.appEl.classList.remove('state-win');
                 this.appEl.classList.add('state-choose');
 
-                Array.from(document.querySelectorAll('.tile')).forEach(tile => {
-                    tile.classList.add('is-active');
-                });
+                Tiles.markAllTilesActive();
 
                 //debug
                 document.querySelector('.debug-state').textContent = 'choose';
@@ -77,9 +74,7 @@ class App {
                 this.appEl.classList.remove('state-win');
                 this.appEl.classList.add('state-roll');
 
-                Array.from(document.querySelectorAll('.tile')).forEach(tile => {
-                    tile.classList.remove('is-active');
-                });
+                Tiles.markAllTilesNotActive();
 
                 //debug
                 document.querySelector('.debug-state').textContent = 'roll';

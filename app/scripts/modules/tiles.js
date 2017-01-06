@@ -29,6 +29,14 @@ class Tiles {
         });
     }
 
+    markAllTilesActive() {
+      this._tileViews.forEach(tileView => tileView.markActive());
+    }
+
+    markAllTilesNotActive() {
+      this._tileViews.forEach(tileView => tileView.markNotActive());
+    }
+
     getSelectedTileSum() {
         return this._getSelectedTileModels().reduce((sum, tileModel) => sum + tileModel.getValue(), 0);
     }

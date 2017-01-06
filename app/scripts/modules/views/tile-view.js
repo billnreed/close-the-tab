@@ -14,6 +14,14 @@ class TileView {
   markUsed() {
     this._el.classList.add('is-used');
   }
+
+  markActive() {
+    this._el.classList.add('is-active');
+  }
+
+  markNotActive() {
+    this._el.classList.remove('is-active');
+  }
 }
 
 export default TileView;
