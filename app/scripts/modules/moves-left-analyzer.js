@@ -4,7 +4,6 @@ function areThereMovesLeft(total, availableTiles) {
 }
 
 function testForAvailableMoves(total, values, depth) {
-    console.log(`testForAvailableMoves(${total}, ${values}, ${depth})`)
     if (total == 0) {
       return true;
     } else if (depth == 4) {
