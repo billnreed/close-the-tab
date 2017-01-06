@@ -44,9 +44,6 @@ class App {
                 Dice.roll1();
                 Dice.roll2();
 
-                //check for loss
-
-
                 //go to States.CHOOSE
                 this._transitionTo(States.CHOOSE);
             }
