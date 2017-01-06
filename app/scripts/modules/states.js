@@ -3,6 +3,6 @@ export default {
     EVALUATE_ROLL: 2,
     CHOOSE: 3,
     CHECK_WIN: 4,
-    LOSE: 4,
+    LOSE: 5,
     WIN: 6
 };

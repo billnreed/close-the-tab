@@ -60,12 +60,18 @@ class App {
 
                 this._state = state;
 
+                //if lose
+                const targetSum = Dice.getDiceSum();
+                //this._transitionTo(States.LOSE);
+
+                //else
                 this._transitionTo(States.CHOOSE);
                 break;
             case States.CHOOSE:
                 this.debug('choose');
 
                 this._state = state;
+
                 Tiles.clearSelected();
 
                 this.appEl.classList.remove('state-choose');
@@ -77,18 +83,23 @@ class App {
                 Tiles.markAllTilesActive();
                 break;
             case States.CHECK_WIN:
-                this.debug('check_win')
+                this.debug('check_win');
 
                 this._state = state;
 
                 const remainingTileCount = Tiles.getRemainingCount();
                 if (remainingTileCount == 0) {
-                    // this._transitionTo(States.WIN);
-                    console.log('win');
+                    this._transitionTo(States.WIN);
                 } else {
                     this._transitionTo(States.ROLL);
                 }
 
+                break;
+            case States.WIN:
+                this.debug('win');
+                break;
+            case States.LOSE:
+                this.debug('lose');
                 break;
         }
     }
