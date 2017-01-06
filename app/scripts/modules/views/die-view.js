@@ -1,6 +1,5 @@
 class DieView {
   constructor(selector) {
-    this._selector = selector;
     this._el = document.querySelector(selector);
   }
 
