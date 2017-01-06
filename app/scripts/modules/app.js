@@ -40,9 +40,7 @@ class App {
 
         document.querySelector('.roll').addEventListener('click', () => {
             if (this._state === States.ROLL) {
-                //roll dice
-                Dice.roll1();
-                Dice.roll2();
+                Dice.rollTwoDice();
 
                 //go to States.CHOOSE
                 this._transitionTo(States.CHOOSE);
