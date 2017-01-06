@@ -10,8 +10,8 @@ function testForAvailableMoves(total, values, depth) {
     } else if (depth == 4) {
       return false;
     } else {
-        return values.reduce((availableMoves, val, i) => {
-          const nextTotal = total - val;
+        return values.reduce((availableMoves, value, i) => {
+          const nextTotal = total - value;
           const nextValues = [].concat(values.slice(0, i), values.slice(i + 1, values.length));
           const nextDepth = depth + 1;
 
@@ -22,21 +22,6 @@ function testForAvailableMoves(total, values, depth) {
           }
         }, false)
     }
-}
-
-function computeValueDifferences(total, values) {
-    let valueDifferences = {};
-    values.forEach(value => {
-        const difference = total - value;
-        if (difference >= 0) {
-          valueDifferences[value] = total - value;
-        }
-    });
-    return valueDifferences;
-}
-
-function anyDifferencesAreZero(valueDifferences) {
-  Object.values(valueDifferences).some(difference => difference == 0);
 }
 
 export default areThereMovesLeft;
