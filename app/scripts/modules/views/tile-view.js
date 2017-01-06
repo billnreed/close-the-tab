@@ -22,6 +22,10 @@ class TileView {
   markNotActive() {
     this._el.classList.remove('is-active');
   }
+
+  registerClickListener(callback, context) {
+    this._el.addEventListener('click', callback.bind(context));
+  }
 }
 
 export default TileView;

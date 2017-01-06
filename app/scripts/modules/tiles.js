@@ -3,15 +3,20 @@ import TileModel from './models/tile-model';
 
 class Tiles {
     constructor() {
-        this.tiles = Array.from(document.querySelectorAll('.tile'));
-
         this._tileViews = [];
         this._tileModels = [];
+
         for (let tileValue = 1; tileValue <= 9; tileValue++) {
             const selector = `.tile[data-number='${tileValue}']`;
             this._tileViews.push(new TileView(selector));
             this._tileModels.push(new TileModel(tileValue));
         }
+    }
+
+    registerClickListeners(callback, context) {
+      this._tileViews.forEach(tileView => {
+        tileView.registerClickListener(callback, context)
+      });
     }
 
     toggleTile(tileEl) {
@@ -72,5 +77,4 @@ class Tiles {
 }
 
 const tiles = new Tiles();
-
 export default tiles;

@@ -15,12 +15,10 @@ class App {
     }
 
     _registerEventListeners() {
-        Tiles.tiles.forEach(tile => {
-            tile.addEventListener('click', (e) => {
-                if (this._state === States.CHOOSE) {
-                    Tiles.toggleTile(e.target);
-                }
-            });
+        Tiles.registerClickListeners(e => {
+            if (this._state === States.CHOOSE) {
+                Tiles.toggleTile(e.target);
+            }
         });
 
         document.querySelector('.use-tiles').addEventListener('click', () => {
