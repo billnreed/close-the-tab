@@ -1,6 +1,7 @@
-import States from './states.js'
-import Dice from './dice.js'
-import Tiles from './tiles.js'
+import States from './states';
+import Dice from './dice';
+import Tiles from './tiles';
+import areThereMovesLeft from './moves-left-analyzer';
 
 class App {
     constructor() {
@@ -60,12 +61,11 @@ class App {
 
                 this._state = state;
 
-                //if lose
-                const targetSum = Dice.getDiceSum();
-                //this._transitionTo(States.LOSE);
-
-                //else
-                this._transitionTo(States.CHOOSE);
+                if (!areThereMovesLeft(Dice.getDiceSum(), Tiles.getRemainingTiles())) {
+                  this._transitionTo(States.LOSE);
+                } else {
+                  this._transitionTo(States.CHOOSE);
+                }
                 break;
             case States.CHOOSE:
                 this.debug('choose');
