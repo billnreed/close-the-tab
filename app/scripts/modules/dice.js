@@ -28,6 +28,10 @@ class Dice {
         }
     }
 
+    clear() {
+      this._dice.forEach(die => die.clear());
+    }
+
     _removeDice() {
         this._dice.forEach(die => die.destroy());
         this._dice = [];

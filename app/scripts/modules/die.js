@@ -16,6 +16,11 @@ class Die {
     return this._model.getValue();
   }
 
+  clear() {
+    this._view.clear();
+    this._model.clear();
+  }
+
   destroy() {
     this._view.destroy();
   }

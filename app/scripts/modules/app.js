@@ -91,18 +91,20 @@ class App {
                 if (remainingTileCount == 0) {
                     this._transitionTo(States.WIN);
                 } else {
-                    this._transitionTo(States.DETERMINE_NUMBER_OF_DIE);
+                    this._transitionTo(States.RESET_DICE);
                 }
 
                 break;
-            case States.DETERMINE_NUMBER_OF_DIE:
-                this.debug('determine number of die')
+            case States.RESET_DICE:
+                this.debug('reset dice')
 
                 if (Tiles.getRemainingTilesSum() <= 6) {
                     Dice.setNumberToRoll(1);
                 } else {
                     Dice.setNumberToRoll(2);
                 }
+
+                Dice.clear();
 
                 this._transitionTo(States.ROLL);
                 break;

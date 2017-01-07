@@ -10,6 +10,10 @@ class DieView {
     this._el.textContent = value;
   }
 
+  clear() {
+    this.setValue('');
+  }
+
   destroy() {
     this._parentEl.removeChild(this._el);
   }

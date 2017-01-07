@@ -10,6 +10,10 @@ class DieModel {
   getValue() {
     return this._value;
   }
+
+  clear() {
+    this._value = 0;
+  }
 }
 
 export default DieModel;
