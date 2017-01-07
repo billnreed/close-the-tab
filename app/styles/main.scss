@@ -3,11 +3,11 @@
 @import "generic.reset";
 
 @import "objects.dice";
-@import "objects.tile-group";
+@import "objects.centered-group";
 
 @import "components.app";
+@import "components.button";
 @import "components.die";
-@import "components.roll";
 @import "components.tile";
 
 @import "trumps.spacing";

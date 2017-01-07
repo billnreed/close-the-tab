@@ -7,7 +7,6 @@ class App {
     constructor() {
         this.appEl = document.querySelector('.app');
         this._state = null;
-
     }
 
     start() {

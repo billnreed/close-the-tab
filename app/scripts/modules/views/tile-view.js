@@ -1,7 +1,7 @@
 class TileView {
   constructor(tileValue) {
     this._el = document.createElement('div');
-    this._el.classList.add('tile');
+    this._el.classList.add('tile', 'centered-group__item');
     this._el.setAttribute('data-number', tileValue);
     this._el.textContent = tileValue;
 
