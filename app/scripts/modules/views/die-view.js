@@ -1,7 +1,7 @@
 class DieView {
   constructor() {
     this._el = document.createElement('div');
-    this._el.classList.add('die');
+    this._el.classList.add('die', 'centered-group__item');
     this._parentEl = document.querySelector('.dice');
     this._parentEl.appendChild(this._el);
   }
