@@ -12,7 +12,7 @@ class App {
     }
 
     start() {
-        this._transitionTo(States.ROLL);
+        this._transitionTo(States.DETERMINE_NUMBER_OF_DIE);
     }
 
     _registerEventListeners() {

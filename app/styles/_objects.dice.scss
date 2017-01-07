@@ -1,10 +1,7 @@
 .dice {
     text-align: center;
 
-    > .die,
-    > .roll {
+    > .die {
         display: inline-block;
-
-        vertical-align: middle;
     }
 }

@@ -15,6 +15,10 @@ class Die {
   getValue() {
     return this._model.getValue();
   }
+
+  destroy() {
+    this._view.destroy();
+  }
 }
 
 export default Die;

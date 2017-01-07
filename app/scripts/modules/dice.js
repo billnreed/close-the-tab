@@ -2,37 +2,42 @@ import Die from './die';
 
 class Dice {
     constructor() {
-        this._numberToRoll = 2;
-        this._dieSum = 0;
-
-        this._predeterminedRolls = [[0, 9], [0,8], [0,7], [0,6], [0,5]];
-        this._predeterminedRollsIndex = 0;
+        this._numberToRoll = 0;
+        this._diceSum = 0;
+        this._dice = [];
     }
 
     roll() {
-        if (this._predeterminedRollsIndex < this._predeterminedRolls.length) {
-          let dieValues = this._predeterminedRolls[this._predeterminedRollsIndex];
-          (new Die(1)).setValue(dieValues[0]);
-          (new Die(2)).setValue(dieValues[1]);
-          this._dieSum = dieValues[1];
-          this._predeterminedRollsIndex++;
-          return;
-        }
-
-        this._dieSum = 0;
-        for (let dieNumber = 1; dieNumber <= this._numberToRoll; dieNumber++) {
+        this._diceSum = 0;
+        this._dice.forEach(die => {
             const dieValue = this._generateDieValue();
-            this._dieSum += dieValue;
-            (new Die(dieNumber)).setValue(dieValue);
-        }
+            this._diceSum += dieValue;
+            die.setValue(dieValue);
+        });
     }
 
     getDiceSum() {
-        return this._dieSum;
+        return this._diceSum;
     }
 
     setNumberToRoll(numberOfDie) {
-      this._numberToRoll = numberOfDie;
+        if (numberOfDie != this._numberToRoll) {
+            this._numberToRoll = numberOfDie;
+            this._removeDice();
+            this._createDice(this._numberToRoll);
+        }
+    }
+
+    _removeDice() {
+        this._dice.forEach(die => die.destroy());
+        this._dice = [];
+    }
+
+    _createDice(numberOfDice) {
+        for (let i = 0; i < numberOfDice; i++) {
+            const die = new Die();
+            this._dice.push(die);
+        }
     }
 
     _generateDieValue() {
