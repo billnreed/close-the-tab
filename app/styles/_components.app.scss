@@ -1,8 +1,8 @@
 .app {
     &.is-celebrating {
-      .win-message {
-        display: block;
-      }
+        .win-message {
+            display: block;
+        }
     }
 
     &.state-setup {}
@@ -31,9 +31,14 @@
     &.state-reset-dice {}
 
     &.state-lose {
-      .loss-screen {
-        display: block;
-      }
+        .loss-screen {
+            display: block;
+        }
+
+        .button--roll,
+        .button--use-tiles {
+            background: #ccc;
+        }
     }
 
     &.state-win {}
