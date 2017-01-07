@@ -15,6 +15,7 @@
 
         .button--use-tiles {
             background: #ccc;
+            cursor: default;
         }
     }
 
@@ -23,6 +24,7 @@
     &.state-choose {
         .button--roll {
             background: #ccc;
+            cursor: default;
         }
     }
 
@@ -38,6 +40,7 @@
         .button--roll,
         .button--use-tiles {
             background: #ccc;
+            cursor: default;
         }
     }
 
