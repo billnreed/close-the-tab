@@ -1,13 +1,6 @@
 .app {
-    &.state-choose {
-        .die {
-            border-color: #ccc;
-            color: #ccc;
-        }
+    &.state-setup {
 
-        .roll {
-            background: #ccc;
-        }
     }
 
     &.state-roll {
@@ -15,5 +8,32 @@
             border-color: #ccc;
             color: #ccc;
         }
+    }
+
+    &.state-evaluate-roll {
+
+    }
+
+    &.state-choose {
+        .die {
+            border-color: #ccc;
+            color: #ccc;
+        }
+    }
+
+    &.state-check-win {
+
+    }
+
+    &.state-reset-dice {
+
+    }
+
+    &.state-lose {
+
+    }
+
+    &.state-win {
+      
     }
 }

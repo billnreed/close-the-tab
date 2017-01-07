@@ -2,9 +2,11 @@ import States from './states';
 import Dice from './dice';
 import Tiles from './tiles';
 import areThereMovesLeft from './moves-left-analyzer';
+import AppView from './views/app-view';
 
 class App {
     constructor() {
+        this._appView = new AppView();
         this.appEl = document.querySelector('.app');
         this._state = null;
     }
@@ -14,7 +16,9 @@ class App {
     }
 
     _transitionTo(state) {
+        this._appView.transitionTo(state);
         this._state = state;
+        
         switch (state) {
             case States.SETUP:
                 this.debug('setup');
@@ -28,12 +32,6 @@ class App {
                 break;
             case States.ROLL:
                 this.debug('roll');
-
-                this.appEl.classList.remove('state-choose');
-                this.appEl.classList.remove('state-roll');
-                this.appEl.classList.remove('state-lose');
-                this.appEl.classList.remove('state-win');
-                this.appEl.classList.add('state-roll');
 
                 Tiles.markAllTilesNotActive();
                 break;
@@ -50,13 +48,6 @@ class App {
                 this.debug('choose');
 
                 Tiles.clearSelected();
-
-                this.appEl.classList.remove('state-choose');
-                this.appEl.classList.remove('state-roll');
-                this.appEl.classList.remove('state-lose');
-                this.appEl.classList.remove('state-win');
-                this.appEl.classList.add('state-choose');
-
                 Tiles.markAllTilesActive();
                 break;
             case States.CHECK_WIN:
