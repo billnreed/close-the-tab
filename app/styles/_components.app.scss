@@ -24,7 +24,11 @@
 
     &.state-reset-dice {}
 
-    &.state-lose {}
+    &.state-lose {
+      .loss-screen {
+        display: block;
+      }
+    }
 
     &.state-win {}
 }

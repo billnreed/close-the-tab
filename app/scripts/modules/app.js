@@ -25,6 +25,7 @@ class App {
 
                 Tiles.setNumberOfTiles(9);
                 Dice.setNumberToRoll(2);
+                Dice.clear();
 
                 this._registerEventListeners();
 
@@ -107,6 +108,11 @@ class App {
 
                 this._transitionTo(States.EVALUATE_ROLL);
             }
+        });
+
+        document.querySelector('#play-again-button').addEventListener('click', e => {
+            e.preventDefault();
+            this._transitionTo(States.SETUP);
         });
     }
 

@@ -7,6 +7,7 @@ class Tiles {
 
     setNumberOfTiles(numberOfTiles) {
         this._tiles.forEach(tile => tile.destroy());
+        this._tiles = [];
 
         for (let tileValue = 1; tileValue <= numberOfTiles; tileValue++) {
             this._tiles.push(new Tile(tileValue));

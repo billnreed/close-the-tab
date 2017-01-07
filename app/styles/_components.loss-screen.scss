@@ -1,0 +1,11 @@
+.loss-screen {
+    display: none;
+
+    &__title {
+      font-size: 2em;
+    }
+
+    &__score {
+      font-weight: bold;
+    }
+}
