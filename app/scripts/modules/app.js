@@ -100,7 +100,7 @@ class App {
             }
         });
 
-        document.querySelector('.use-tiles').addEventListener('click', () => {
+        document.querySelector('#use-tiles-button').addEventListener('click', () => {
             if (this._state === States.CHOOSE) {
                 if (Dice.getDiceSum() === Tiles.getSelectedTileSum()) {
                     Tiles.useSelectedTiles();
@@ -110,7 +110,7 @@ class App {
             }
         });
 
-        document.querySelector('.roll').addEventListener('click', () => {
+        document.querySelector('#roll-button').addEventListener('click', () => {
             if (this._state === States.ROLL) {
                 Dice.roll();
 
@@ -118,7 +118,6 @@ class App {
             }
         });
     }
-
 
     debug(state) {
         console.log(state);
