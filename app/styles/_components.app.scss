@@ -1,39 +1,30 @@
 .app {
-    &.state-setup {
-
-    }
+    &.state-setup {}
 
     &.state-roll {
         .tile {
             border-color: #ccc;
             color: #ccc;
         }
-    }
 
-    &.state-evaluate-roll {
-
-    }
-
-    &.state-choose {
-        .die {
-            border-color: #ccc;
-            color: #ccc;
+        .button--use-tiles {
+            background: #ccc;
         }
     }
 
-    &.state-check-win {
+    &.state-evaluate-roll {}
 
+    &.state-choose {
+        .button--roll {
+            background: #ccc;
+        }
     }
 
-    &.state-reset-dice {
+    &.state-check-win {}
 
-    }
+    &.state-reset-dice {}
 
-    &.state-lose {
+    &.state-lose {}
 
-    }
-
-    &.state-win {
-      
-    }
+    &.state-win {}
 }
