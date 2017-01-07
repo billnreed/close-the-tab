@@ -9,6 +9,11 @@ class App {
         this._view = new AppView();
         this.appEl = document.querySelector('.app');
         this._state = null;
+
+        if (localStorage.didWin == 'true') {
+          this._view.showWinMessage();
+          localStorage.didWin = 'false';
+        }
     }
 
     start() {

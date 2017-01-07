@@ -20,6 +20,14 @@ class AppView {
         this._addStateClass(state)
     }
 
+    showWinMessage() {
+      this._el.classList.add('is-celebrating');
+    }
+
+    hideWinMessage() {
+      this._el.classList.remove('is-celebrating');
+    }
+
     _removeStateClasses() {
         Object.values(this._stateClasses).forEach(stateClass => this._el.classList.remove(stateClass));
     }

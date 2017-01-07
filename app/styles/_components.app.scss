@@ -1,4 +1,10 @@
 .app {
+    &.is-celebrating {
+      .win-message {
+        display: block;
+      }
+    }
+
     &.state-setup {}
 
     &.state-roll {
