@@ -34,7 +34,7 @@ class App {
 
         document.querySelector('.roll').addEventListener('click', () => {
             if (this._state === States.ROLL) {
-                Dice.rollTwoDice();
+                Dice.roll();
 
                 this._transitionTo(States.EVALUATE_ROLL);
             }
@@ -91,9 +91,18 @@ class App {
                 if (remainingTileCount == 0) {
                     this._transitionTo(States.WIN);
                 } else {
-                    this._transitionTo(States.ROLL);
+                    this._transitionTo(States.DETERMINE_NUMBER_OF_DIE);
                 }
 
+                break;
+            case States.DETERMINE_NUMBER_OF_DIE:
+                if (Tiles.getRemainingTilesSum() <= 6) {
+                  Dice.setNumberToRoll(1);
+                } else {
+                  Dice.setNumberToRoll(2);
+                }
+
+                this._transitionTo(States.ROLL);
                 break;
             case States.WIN:
                 this.debug('win');

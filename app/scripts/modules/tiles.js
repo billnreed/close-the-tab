@@ -51,6 +51,10 @@ class Tiles {
       return this.getRemainingTiles().length;
     }
 
+    getRemainingTilesSum() {
+      return this.getRemainingTiles().reduce((sum, tile) => sum + tile.getValue(), 0);
+    }
+
     _getSelectedTiles() {
       return this._tiles.filter(tile => tile.isSelected());
     }

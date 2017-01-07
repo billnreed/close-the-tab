@@ -2,20 +2,37 @@ import Die from './die';
 
 class Dice {
     constructor() {
-        this._die1 = new Die('.die--1');
-        this._die2 = new Die('.die--2');
+        this._numberToRoll = 2;
+        this._dieSum = 0;
+
+        this._predeterminedRolls = [[0, 9], [0,8], [0,7], [0,6], [0,5]];
+        this._predeterminedRollsIndex = 0;
     }
 
-    rollTwoDice() {
-        const die1Value = this._generateDieValue();
-        const die2Value = this._generateDieValue();
+    roll() {
+        if (this._predeterminedRollsIndex < this._predeterminedRolls.length) {
+          let dieValues = this._predeterminedRolls[this._predeterminedRollsIndex];
+          (new Die(1)).setValue(dieValues[0]);
+          (new Die(2)).setValue(dieValues[1]);
+          this._dieSum = dieValues[1];
+          this._predeterminedRollsIndex++;
+          return;
+        }
 
-        this._die1.setValue(die1Value);
-        this._die2.setValue(die2Value);
+        this._dieSum = 0;
+        for (let dieNumber = 1; dieNumber <= this._numberToRoll; dieNumber++) {
+            const dieValue = this._generateDieValue();
+            this._dieSum += dieValue;
+            (new Die(dieNumber)).setValue(dieValue);
+        }
     }
 
     getDiceSum() {
-        return this._die1.getValue() + this._die2.getValue();
+        return this._dieSum;
+    }
+
+    setNumberToRoll(numberOfDie) {
+      this._numberToRoll = numberOfDie;
     }
 
     _generateDieValue() {
