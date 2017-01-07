@@ -8,7 +8,6 @@ class App {
         this.appEl = document.querySelector('.app');
         this._state = null;
 
-        this._registerEventListeners();
     }
 
     start() {
@@ -47,7 +46,10 @@ class App {
             case States.SETUP:
                 this.debug('setup');
 
+                Tiles.setNumberOfTiles(9);
                 Dice.setNumberToRoll(2);
+
+                this._registerEventListeners();
 
                 this._transitionTo(States.ROLL);
                 break;
@@ -96,7 +98,7 @@ class App {
 
                 break;
             case States.RESET_DICE:
-                this.debug('reset dice')
+                this.debug('reset dice');
 
                 if (Tiles.getRemainingTilesSum() <= 6) {
                     Dice.setNumberToRoll(1);

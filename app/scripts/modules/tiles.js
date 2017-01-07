@@ -3,17 +3,20 @@ import Tile from './tile';
 class Tiles {
     constructor() {
         this._tiles = [];
+    }
 
-        for (let tileValue = 1; tileValue <= 9; tileValue++) {
-            const selector = `.tile[data-number='${tileValue}']`;
-            this._tiles.push(new Tile(selector, tileValue));
+    setNumberOfTiles(numberOfTiles) {
+        this._tiles.forEach(tile => tile.destroy());
+
+        for (let tileValue = 1; tileValue <= numberOfTiles; tileValue++) {
+            this._tiles.push(new Tile(tileValue));
         }
     }
 
     registerClickListeners(callback, context) {
-      this._tiles.forEach(tile => {
-        tile.registerClickListener(callback, context);
-      });
+        this._tiles.forEach(tile => {
+            tile.registerClickListener(callback, context);
+        });
     }
 
     toggleTile(tileEl) {
@@ -23,16 +26,16 @@ class Tiles {
 
     useSelectedTiles() {
         this._getSelectedTiles().forEach(selectedTile => {
-          selectedTile.markUsed();
+            selectedTile.markUsed();
         });
     }
 
     markAllTilesActive() {
-      this._tiles.forEach(tile => tile.markActive());
+        this._tiles.forEach(tile => tile.markActive());
     }
 
     markAllTilesNotActive() {
-      this._tiles.forEach(tile => tile.markNotActive());
+        this._tiles.forEach(tile => tile.markNotActive());
     }
 
     getSelectedTileSum() {
@@ -44,19 +47,19 @@ class Tiles {
     }
 
     getRemainingTiles() {
-      return this._tiles.filter(tile => tile.isNotUsed());
+        return this._tiles.filter(tile => tile.isNotUsed());
     }
 
     getRemainingCount() {
-      return this.getRemainingTiles().length;
+        return this.getRemainingTiles().length;
     }
 
     getRemainingTilesSum() {
-      return this.getRemainingTiles().reduce((sum, tile) => sum + tile.getValue(), 0);
+        return this.getRemainingTiles().reduce((sum, tile) => sum + tile.getValue(), 0);
     }
 
     _getSelectedTiles() {
-      return this._tiles.filter(tile => tile.isSelected());
+        return this._tiles.filter(tile => tile.isSelected());
     }
 
     _getTileForElement(el) {

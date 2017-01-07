@@ -2,8 +2,8 @@ import DieView from './views/die-view';
 import DieModel from './models/die-model';
 
 class Die {
-  constructor(dieNumber) {
-    this._view = new DieView(`.die--${dieNumber}`);
+  constructor() {
+    this._view = new DieView();
     this._model = new DieModel();
   }
 

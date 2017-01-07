@@ -2,8 +2,8 @@ import TileView from './views/tile-view.js';
 import TileModel from './models/tile-model.js';
 
 class Tile {
-  constructor(selector, value) {
-    this._view = new TileView(selector);
+  constructor(value) {
+    this._view = new TileView(value);
     this._model = new TileModel(value);
   }
 
@@ -44,6 +44,10 @@ class Tile {
 
   isNotUsed() {
     return this._model.isNotUsed();
+  }
+
+  destroy() {
+    return this._view.destroy();
   }
 }
 

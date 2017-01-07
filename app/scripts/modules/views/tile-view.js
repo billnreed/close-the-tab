@@ -1,6 +1,12 @@
 class TileView {
-  constructor(selector) {
-    this._el = document.querySelector(selector);
+  constructor(tileValue) {
+    this._el = document.createElement('div');
+    this._el.classList.add('tile');
+    this._el.setAttribute('data-number', tileValue);
+    this._el.textContent = tileValue;
+
+    this._parentEl = document.querySelector('.tile-group');
+    this._parentEl.appendChild(this._el);
   }
 
   toggleSelected() {
@@ -25,6 +31,10 @@ class TileView {
 
   registerClickListener(callback, context) {
     this._el.addEventListener('click', callback.bind(context));
+  }
+
+  destroy() {
+    this._parentEl.removeChild(this._el);
   }
 }
 

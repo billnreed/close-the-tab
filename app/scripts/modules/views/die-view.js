@@ -1,5 +1,5 @@
 class DieView {
-  constructor(selector) {
+  constructor() {
     this._el = document.createElement('div');
     this._el.classList.add('die');
     this._parentEl = document.querySelector('.dice');
