@@ -86,6 +86,8 @@ class App {
                 break;
             case States.LOSE:
                 this.debug('lose');
+                const score = Tiles.getRemainingTiles().reduce((score, tile) => score + tile.getValue(), '');
+                this._view.setScore(score);
                 break;
         }
     }

@@ -27,6 +27,11 @@
         <div class="centered-group win-message">
           Nice win last time!
         </div>
+        <div class="loss-screen centered-group">
+          <h1 class="loss-screen__title">You lost :(</h1>
+          <p>Your score was <span id="score" class="loss-screen__score">123456789</span>.</p>
+          <a href="#" id="play-again-button">Play again?</a>
+        </div>
         <div class="playing-field">
             <div class="tile-group centered-group"></div>
             <div class="dice centered-group"></div>
@@ -34,11 +39,6 @@
                 <button id="roll-button" class="centered-group__item button button--roll">Roll</button>
                 <button id="use-tiles-button" class="centered-group__item button button--use-tiles">Use tiles</button>
             </div>
-        </div>
-        <div class="loss-screen centered-group">
-          <h1 class="loss-screen__title">You lost :(</h1>
-          <p>Your score was <span class="loss-screen__score">123456789</span>.</p>
-          <a href="#" id="play-again-button">Play again?</a>
         </div>
     </div>
     <div class="debug-state"></div>

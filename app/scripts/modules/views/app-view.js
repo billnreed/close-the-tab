@@ -28,6 +28,10 @@ class AppView {
       this._el.classList.remove('is-celebrating');
     }
 
+    setScore(score) {
+      document.querySelector('#score').textContent = score;
+    }
+
     _removeStateClasses() {
         Object.values(this._stateClasses).forEach(stateClass => this._el.classList.remove(stateClass));
     }
