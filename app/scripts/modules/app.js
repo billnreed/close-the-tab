@@ -85,6 +85,7 @@ class App {
                 break;
             case States.WIN:
                 this.debug('win');
+                window.close();
                 break;
             case States.LOSE:
                 this.debug('lose');
