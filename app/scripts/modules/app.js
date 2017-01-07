@@ -6,7 +6,7 @@ import AppView from './views/app-view';
 
 class App {
     constructor() {
-        this._appView = new AppView();
+        this._view = new AppView();
         this.appEl = document.querySelector('.app');
         this._state = null;
     }
@@ -16,9 +16,9 @@ class App {
     }
 
     _transitionTo(state) {
-        this._appView.transitionTo(state);
+        this._view.transitionTo(state);
         this._state = state;
-        
+
         switch (state) {
             case States.SETUP:
                 this.debug('setup');
