@@ -1,4 +1,5 @@
 export default {
+    SETUP: 0,
     ROLL: 1,
     EVALUATE_ROLL: 2,
     CHOOSE: 3,

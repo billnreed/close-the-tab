@@ -12,7 +12,7 @@ class App {
     }
 
     start() {
-        this._transitionTo(States.DETERMINE_NUMBER_OF_DIE);
+        this._transitionTo(States.SETUP);
     }
 
     _registerEventListeners() {
@@ -42,11 +42,17 @@ class App {
     }
 
     _transitionTo(state) {
+        this._state = state;
         switch (state) {
+            case States.SETUP:
+                this.debug('setup');
+
+                Dice.setNumberToRoll(2);
+
+                this._transitionTo(States.ROLL);
+                break;
             case States.ROLL:
                 this.debug('roll');
-
-                this._state = state;
 
                 this.appEl.classList.remove('state-choose');
                 this.appEl.classList.remove('state-roll');
@@ -59,18 +65,14 @@ class App {
             case States.EVALUATE_ROLL:
                 this.debug('evaluate_roll');
 
-                this._state = state;
-
                 if (!areThereMovesLeft(Dice.getDiceSum(), Tiles.getRemainingTiles())) {
-                  this._transitionTo(States.LOSE);
+                    this._transitionTo(States.LOSE);
                 } else {
-                  this._transitionTo(States.CHOOSE);
+                    this._transitionTo(States.CHOOSE);
                 }
                 break;
             case States.CHOOSE:
                 this.debug('choose');
-
-                this._state = state;
 
                 Tiles.clearSelected();
 
@@ -85,8 +87,6 @@ class App {
             case States.CHECK_WIN:
                 this.debug('check_win');
 
-                this._state = state;
-
                 const remainingTileCount = Tiles.getRemainingCount();
                 if (remainingTileCount == 0) {
                     this._transitionTo(States.WIN);
@@ -96,10 +96,12 @@ class App {
 
                 break;
             case States.DETERMINE_NUMBER_OF_DIE:
+                this.debug('determine number of die')
+
                 if (Tiles.getRemainingTilesSum() <= 6) {
-                  Dice.setNumberToRoll(1);
+                    Dice.setNumberToRoll(1);
                 } else {
-                  Dice.setNumberToRoll(2);
+                    Dice.setNumberToRoll(2);
                 }
 
                 this._transitionTo(States.ROLL);
