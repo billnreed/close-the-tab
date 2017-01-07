@@ -13,9 +13,9 @@ class Tiles {
         }
     }
 
-    registerClickListeners(callback, context) {
+    registerClickListeners(callback) {
         this._tiles.forEach(tile => {
-            tile.registerClickListener(callback, context);
+            tile.registerClickListener(callback);
         });
     }
 

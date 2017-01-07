@@ -14,32 +14,6 @@ class App {
         this._transitionTo(States.SETUP);
     }
 
-    _registerEventListeners() {
-        Tiles.registerClickListeners(e => {
-            if (this._state === States.CHOOSE) {
-                Tiles.toggleTile(e.target);
-            }
-        });
-
-        document.querySelector('.use-tiles').addEventListener('click', () => {
-            if (this._state === States.CHOOSE) {
-                if (Dice.getDiceSum() === Tiles.getSelectedTileSum()) {
-                    Tiles.useSelectedTiles();
-
-                    this._transitionTo(States.CHECK_WIN);
-                }
-            }
-        });
-
-        document.querySelector('.roll').addEventListener('click', () => {
-            if (this._state === States.ROLL) {
-                Dice.roll();
-
-                this._transitionTo(States.EVALUATE_ROLL);
-            }
-        });
-    }
-
     _transitionTo(state) {
         this._state = state;
         switch (state) {
@@ -118,6 +92,33 @@ class App {
                 break;
         }
     }
+
+    _registerEventListeners() {
+        Tiles.registerClickListeners(e => {
+            if (this._state === States.CHOOSE) {
+                Tiles.toggleTile(e.target);
+            }
+        });
+
+        document.querySelector('.use-tiles').addEventListener('click', () => {
+            if (this._state === States.CHOOSE) {
+                if (Dice.getDiceSum() === Tiles.getSelectedTileSum()) {
+                    Tiles.useSelectedTiles();
+
+                    this._transitionTo(States.CHECK_WIN);
+                }
+            }
+        });
+
+        document.querySelector('.roll').addEventListener('click', () => {
+            if (this._state === States.ROLL) {
+                Dice.roll();
+
+                this._transitionTo(States.EVALUATE_ROLL);
+            }
+        });
+    }
+
 
     debug(state) {
         console.log(state);
