@@ -56,7 +56,7 @@
  *  and we finally decide that there are available moves.
  */
 
-function areThereMovesLeft(total, availableTiles) {
+export default function areThereMovesLeft(total, availableTiles) {
   const possibleValues = availableTiles.map(tile => tile.getValue()).filter(value => value <= total);
   return testForAvailableMoves(total, possibleValues, 0);
 }
@@ -80,5 +80,3 @@ function testForAvailableMoves(total, values, depth) {
         }, false)
     }
 }
-
-export default areThereMovesLeft;
