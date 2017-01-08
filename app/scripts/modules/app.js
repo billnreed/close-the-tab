@@ -29,7 +29,10 @@ class App {
                 this.debug('setup');
 
                 Tiles.setNumberOfTiles(9);
-                Dice.setNumberToRoll(2);
+                Dice.setNumberOfDice(2);
+                Dice.setNumberOfFaces(6);
+
+                // reset from previous round
                 Dice.clear();
 
                 this._registerEventListeners();
@@ -70,10 +73,10 @@ class App {
             case States.RESET_DICE:
                 this.debug('reset dice');
 
-                if (Tiles.getRemainingTilesSum() <= 6) {
-                    Dice.setNumberToRoll(1);
+                if (Tiles.getRemainingTilesSum() <= Dice.getNumberOfFaces()) {
+                    Dice.setNumberOfDice(1);
                 } else {
-                    Dice.setNumberToRoll(2);
+                    Dice.setNumberOfDice(2);
                 }
 
                 Dice.clear();
@@ -82,6 +85,7 @@ class App {
                 break;
             case States.WIN:
                 this.debug('win');
+                localStorage.didWin = 'true';
                 window.close();
                 break;
             case States.LOSE:

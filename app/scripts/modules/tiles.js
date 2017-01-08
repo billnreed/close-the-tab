@@ -3,13 +3,15 @@ import Tile from './tile';
 class Tiles {
     constructor() {
         this._tiles = [];
+        this._numberOfTiles = 0;
     }
 
     setNumberOfTiles(numberOfTiles) {
+        this._numberOfTiles = numberOfTiles;
         this._tiles.forEach(tile => tile.destroy());
         this._tiles = [];
 
-        for (let tileValue = 1; tileValue <= numberOfTiles; tileValue++) {
+        for (let tileValue = 1; tileValue <= this._numberOfTiles; tileValue++) {
             this._tiles.push(new Tile(tileValue));
         }
     }
