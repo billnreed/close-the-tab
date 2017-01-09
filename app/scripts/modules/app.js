@@ -3,15 +3,16 @@ import Modes from './modes';
 
 import Dice from './dice';
 import Tiles from './tiles';
-import areThereMovesLeft from './moves-left-analyzer';
+
 import AppView from './views/app-view';
+import AppModel from './models/app-model';
+
+import areThereMovesLeft from './moves-left-analyzer';
 
 class App {
     constructor() {
         this._view = new AppView();
-        this.appEl = document.querySelector('.app');
-        this._state = null;
-        this._mode = null;
+        this._model = new AppModel();
 
         if (localStorage.didWin == 'true') {
             this._view.showWinMessage();
@@ -25,19 +26,19 @@ class App {
 
     _transitionTo(state) {
         this._view.transitionTo(state);
-        this._state = state;
+        this._model.setState(state);
 
         switch (state) {
             case States.CHOOSE_MODE:
                 this.debug('choose mode');
 
                 document.querySelector('#choose-mode-classic-button').addEventListener('click', () => {
-                    this._mode = Modes.CLASSIC;
+                    this._model.setMode(Modes.CLASSIC);
                     this._transitionTo(States.SETUP);
                 });
 
                 document.querySelector('#choose-mode-brian-button').addEventListener('click', () => {
-                    this._mode = Modes.BRIAN;
+                    this._model.setMode(Modes.BRIAN);
                     this._transitionTo(States.SETUP);
                 });
 
@@ -45,9 +46,9 @@ class App {
             case States.SETUP:
                 this.debug('setup');
 
-                Tiles.setNumberOfTiles(this._mode.numberOfTiles);
-                Dice.setNumberOfDice(this._mode.numberOfDice);
-                Dice.setNumberOfFaces(this._mode.numberOfFaces);
+                Tiles.setNumberOfTiles(this._model.getMode().numberOfTiles);
+                Dice.setNumberOfDice(this._model.getMode().numberOfDice);
+                Dice.setNumberOfFaces(this._model.getMode().numberOfFaces);
 
                 // reset from previous round
                 Dice.clear();
@@ -90,7 +91,7 @@ class App {
                 this.debug('reset dice');
 
                 const numberOfDice = Math.ceil(Tiles.getRemainingTilesSum() / Dice.getNumberOfFaces());
-                Dice.setNumberOfDice(Math.min(numberOfDice, this._mode.numberOfDice));
+                Dice.setNumberOfDice(Math.min(numberOfDice, this._model.getMode().numberOfDice));
 
                 Dice.clear();
 
@@ -111,13 +112,13 @@ class App {
 
     _registerEventListeners() {
         Tiles.registerClickListeners(e => {
-            if (this._state === States.CHOOSE) {
+            if (this._model.getState() === States.CHOOSE) {
                 Tiles.toggleTile(e.target);
             }
         });
 
         document.querySelector('#use-tiles-button').addEventListener('click', () => {
-            if (this._state === States.CHOOSE) {
+            if (this._model.getState() === States.CHOOSE) {
                 if (Dice.getDiceSum() === Tiles.getSelectedTileSum()) {
                     Tiles.useSelectedTiles();
 
@@ -127,7 +128,7 @@ class App {
         });
 
         document.querySelector('#roll-button').addEventListener('click', () => {
-            if (this._state === States.ROLL) {
+            if (this._model.getState() === States.ROLL) {
                 Dice.roll();
 
                 this._transitionTo(States.EVALUATE_ROLL);
