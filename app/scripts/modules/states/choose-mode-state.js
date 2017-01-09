@@ -1,21 +1,23 @@
-//TODO move selectors to views
-
 import App from '../app';
 
 import Modes from '../modes';
 import States from '../states';
 
+import ChooseModeView from '../views/choose-mode-view';
+
 class ChooseModeState {
-    constructor() {}
+    constructor() {
+      this._view = new ChooseModeView();
+    }
 
     onEnter() {
-        document.querySelector('#choose-mode-classic-button').addEventListener('click', this._handleChooseClassicMode);
-        document.querySelector('#choose-mode-brian-button').addEventListener('click', this._handleChooseBrianMode);
+        this._view.addChooseClassicModeListener(this._handleChooseClassicMode);
+        this._view.addChooseBrianModeListener(this._handleChooseBrianMode);
     }
 
     onExit() {
-        document.querySelector('#choose-mode-classic-button').removeEventListener('click', this._handleChooseClassicMode);
-        document.querySelector('#choose-mode-brian-button').removeEventListener('click', this._handleChooseBrianMode);
+        this._view.removeChooseClassicModeListener(this._handleChooseClassicMode);
+        this._view.removeChooseBrianModeListener(this._handleChooseBrianMode);
     }
 
     _handleChooseClassicMode() {

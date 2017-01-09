@@ -4,18 +4,22 @@ import States from '../states';
 
 import Tiles from '../tiles';
 
+import LoseView from '../views/lose-view';
+
 class LoseState {
-    constructor() {}
+    constructor() {
+      this._view = new LoseView();
+    }
 
     onEnter() {
         const score = Tiles.getRemainingTiles().reduce((score, tile) => score + tile.getValue(), '');
         App.setScore(score);
 
-        document.querySelector('#play-again-button').addEventListener('click', this._handlePlayAgain);
+        this._view.addPlayAgainListener(this._handlePlayAgain);
     }
 
     onExit() {
-        document.querySelector('#play-again-button').removeEventListener('click', this._handlePlayAgain);
+        this._view.removePlayAgainListener(this._handlePlayAgain);
     }
 
     _handlePlayAgain(e) {

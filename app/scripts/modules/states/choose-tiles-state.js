@@ -5,20 +5,24 @@ import States from '../states';
 import Dice from '../dice';
 import Tiles from '../tiles';
 
+import ChooseTilesView from '../views/choose-tiles-view';
+
 class ChooseTilesState {
-    constructor() {}
+    constructor() {
+        this._view = new ChooseTilesView();
+    }
 
     onEnter() {
         Tiles.clearSelected();
         Tiles.markAllTilesActive();
 
         Tiles.addClickListeners(this._handleTileClick);
-        document.querySelector('#use-tiles-button').addEventListener('click', this._handleUseTiles);
+        this._view.addUseTilesListener(this._handleUseTiles);
     }
 
     onExit() {
         Tiles.removeClickListeners(this._handleTileClick);
-        document.querySelector('#use-tiles-button').removeEventListener('click', this._handleUseTiles);
+        this._view.removeUseTilesListener(this._handleUseTiles);
     }
 
     _handleTileClick(e) {

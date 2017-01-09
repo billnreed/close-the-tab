@@ -5,17 +5,21 @@ import States from '../states';
 import Dice from '../dice';
 import Tiles from '../tiles';
 
+import RollView from '../views/roll-view';
+
 class RollState {
-    constructor() {}
+    constructor() {
+      this._view = new RollView();
+    }
 
     onEnter() {
         Tiles.markAllTilesNotActive();
 
-        document.querySelector('#roll-button').addEventListener('click', this._handleRollButtonClick);
+        this._view.addRollListener(this._handleRollButtonClick);
     }
 
     onExit() {
-        document.querySelector('#roll-button').removeEventListener('click', this._handleRollButtonClick);
+        this._view.removeRollListener(this._handleRollButtonClick);
     }
 
     _handleRollButtonClick() {
