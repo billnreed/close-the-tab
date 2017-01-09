@@ -5,9 +5,19 @@
         }
     }
 
+    &.state-choose-mode {
+        .choose-mode {
+            display: block;
+        }
+    }
+
     &.state-setup {}
 
     &.state-roll {
+        .playing-field {
+            display: block;
+        }
+
         .tile {
             border-color: #ccc;
             color: #ccc;
@@ -22,6 +32,10 @@
     &.state-evaluate-roll {}
 
     &.state-choose {
+        .playing-field {
+            display: block;
+        }
+
         .button--roll {
             background: #ccc;
             cursor: default;
@@ -33,6 +47,10 @@
     &.state-reset-dice {}
 
     &.state-lose {
+        .playing-field {
+            display: block;
+        }
+
         .loss-screen {
             display: block;
         }

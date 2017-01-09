@@ -5,6 +5,7 @@ class AppView {
         this._el = document.querySelector('.app');
 
         this._stateClasses = {};
+        this._stateClasses[States.CHOOSE_MODE] = 'state-choose-mode';
         this._stateClasses[States.SETUP] = 'state-setup';
         this._stateClasses[States.ROLL] = 'state-roll';
         this._stateClasses[States.EVALUATE_ROLL] = 'state-evaluate-roll';

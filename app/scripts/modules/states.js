@@ -1,10 +1,12 @@
 export default {
-    SETUP: 0,
-    ROLL: 1,
-    EVALUATE_ROLL: 2,
-    CHOOSE: 3,
-    CHECK_WIN: 4,
-    RESET_DICE: 5,
-    LOSE: 6,
-    WIN: 7
+    CHOOSE_MODE: 0,
+    SETUP_CLASSIC: 1,
+    SETUP_BRIAN: 2,
+    ROLL: 3,
+    EVALUATE_ROLL: 4,
+    CHOOSE: 5,
+    CHECK_WIN: 6,
+    RESET_DICE: 7,
+    LOSE: 8,
+    WIN: 9
 };

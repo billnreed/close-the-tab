@@ -1,4 +1,6 @@
 import States from './states';
+import Modes from './modes';
+
 import Dice from './dice';
 import Tiles from './tiles';
 import areThereMovesLeft from './moves-left-analyzer';
@@ -9,15 +11,16 @@ class App {
         this._view = new AppView();
         this.appEl = document.querySelector('.app');
         this._state = null;
+        this._mode = null;
 
         if (localStorage.didWin == 'true') {
-          this._view.showWinMessage();
-          localStorage.didWin = 'false';
+            this._view.showWinMessage();
+            localStorage.didWin = 'false';
         }
     }
 
     start() {
-        this._transitionTo(States.SETUP);
+        this._transitionTo(States.CHOOSE_MODE);
     }
 
     _transitionTo(state) {
@@ -25,18 +28,31 @@ class App {
         this._state = state;
 
         switch (state) {
+            case States.CHOOSE_MODE:
+                this.debug('choose mode');
+
+                document.querySelector('#choose-mode-classic-button').addEventListener('click', () => {
+                    this._mode = Modes.CLASSIC;
+                    this._transitionTo(States.SETUP);
+                });
+
+                document.querySelector('#choose-mode-brian-button').addEventListener('click', () => {
+                    this._mode = Modes.BRIAN;
+                    this._transitionTo(States.SETUP);
+                });
+
+                break;
             case States.SETUP:
                 this.debug('setup');
 
-                Tiles.setNumberOfTiles(9);
-                Dice.setNumberOfDice(2);
-                Dice.setNumberOfFaces(6);
+                Tiles.setNumberOfTiles(this._mode.numberOfTiles);
+                Dice.setNumberOfDice(this._mode.numberOfDice);
+                Dice.setNumberOfFaces(this._mode.numberOfFaces);
 
                 // reset from previous round
                 Dice.clear();
 
                 this._registerEventListeners();
-
                 this._transitionTo(States.ROLL);
                 break;
             case States.ROLL:
@@ -73,11 +89,8 @@ class App {
             case States.RESET_DICE:
                 this.debug('reset dice');
 
-                if (Tiles.getRemainingTilesSum() <= Dice.getNumberOfFaces()) {
-                    Dice.setNumberOfDice(1);
-                } else {
-                    Dice.setNumberOfDice(2);
-                }
+                const numberOfDice = Math.ceil(Tiles.getRemainingTilesSum() / Dice.getNumberOfFaces());
+                Dice.setNumberOfDice(Math.min(numberOfDice, this._mode.numberOfDice));
 
                 Dice.clear();
 
