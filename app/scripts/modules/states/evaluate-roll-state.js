@@ -14,7 +14,7 @@ class EvaluateRollState {
         if (!areThereMovesLeft(Dice.getDiceSum(), Tiles.getRemainingTiles())) {
             App.transitionTo(States.LOSE);
         } else {
-            App.transitionTo(States.CHOOSE);
+            App.transitionTo(States.CHOOSE_TILES);
         }
     }
 

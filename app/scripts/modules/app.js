@@ -1,3 +1,5 @@
+//TODO put the localStorage check in its own state
+
 import States from './states';
 import StateFactory from './state-factory';
 import Modes from './modes';

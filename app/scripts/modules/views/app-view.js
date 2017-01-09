@@ -9,7 +9,7 @@ class AppView {
         this._stateClasses[States.SETUP] = 'state-setup';
         this._stateClasses[States.ROLL] = 'state-roll';
         this._stateClasses[States.EVALUATE_ROLL] = 'state-evaluate-roll';
-        this._stateClasses[States.CHOOSE] = 'state-choose';
+        this._stateClasses[States.CHOOSE_TILES] = 'state-choose-tiles';
         this._stateClasses[States.CHECK_WIN] = 'state-check-win';
         this._stateClasses[States.RESET_DICE] = 'state-reset-dice';
         this._stateClasses[States.LOSE] = 'state-lose';

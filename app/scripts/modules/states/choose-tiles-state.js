@@ -5,7 +5,7 @@ import States from '../states';
 import Dice from '../dice';
 import Tiles from '../tiles';
 
-class ChooseState {
+class ChooseTilesState {
     constructor() {}
 
     onEnter() {
@@ -34,4 +34,4 @@ class ChooseState {
     }
 }
 
-export default ChooseState;
+export default ChooseTilesState;
