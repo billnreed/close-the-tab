@@ -21,13 +21,13 @@ class App {
     }
 
     transitionTo(state) {
-        const oldStateInstance = this._model.getState();
+        const oldStateInstance = this._model.getStateInstance();
         if (oldStateInstance) oldStateInstance.onExit();
 
-        this._model.setState(StateFactory.getInstance(state));
+        this._model.setStateInstance(StateFactory.getInstance(state));
         this._view.transitionTo(state);
 
-        this._model.getState().onEnter(this);
+        this._model.getStateInstance().onEnter();
     }
 
     setMode(mode) {

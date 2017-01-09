@@ -1,15 +1,15 @@
 class AppModel {
     constructor() {
-        this._state = null;
+        this._stateInstance = null;
         this._mode = null;
     }
 
-    setState(state) {
-        this._state = state;
+    setStateInstance(stateInstance) {
+        this._stateInstance = stateInstance;
     }
 
-    getState() {
-        return this._state;
+    getStateInstance() {
+        return this._stateInstance;
     }
 
     setMode(mode) {
