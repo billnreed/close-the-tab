@@ -5,19 +5,19 @@ class AppModel {
     }
 
     setState(state) {
-      this._state = state;
+        this._state = state;
     }
 
     getState() {
-      return this._state;
+        return this._state;
     }
 
     setMode(mode) {
-      this._mode = mode;
+        this._mode = mode;
     }
 
     getMode() {
-      return this._mode;
+        return this._mode;
     }
 }
 

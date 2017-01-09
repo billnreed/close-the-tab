@@ -29,8 +29,12 @@ class TileView {
     this._el.classList.remove('is-active');
   }
 
-  registerClickListener(callback) {
+  addClickListener(callback) {
     this._el.addEventListener('click', callback);
+  }
+
+  removeClickListener(callback) {
+    this._el.removeEventListener('click', callback);
   }
 
   destroy() {

@@ -16,9 +16,15 @@ class Tiles {
         }
     }
 
-    registerClickListeners(callback) {
+    addClickListeners(callback) {
         this._tiles.forEach(tile => {
-            tile.registerClickListener(callback);
+            tile.addClickListener(callback);
+        });
+    }
+
+    removeClickListeners(callback) {
+        this._tiles.forEach(tile => {
+            tile.removeClickListener(callback);
         });
     }
 

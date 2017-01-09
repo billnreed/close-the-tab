@@ -1,7 +1,6 @@
 export default {
-    CHOOSE_MODE: 0,
-    SETUP_CLASSIC: 1,
-    SETUP_BRIAN: 2,
+    CHOOSE_MODE: 1,
+    SETUP: 2,
     ROLL: 3,
     EVALUATE_ROLL: 4,
     CHOOSE: 5,

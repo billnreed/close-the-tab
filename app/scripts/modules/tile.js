@@ -7,8 +7,12 @@ class Tile {
     this._model = new TileModel(value);
   }
 
-  registerClickListener(callback) {
-    this._view.registerClickListener(callback);
+  addClickListener(callback) {
+    this._view.addClickListener(callback);
+  }
+
+  removeClickListener(callback) {
+    this._view.removeClickListener(callback);
   }
 
   getValue() {

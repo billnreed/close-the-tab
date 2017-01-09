@@ -1,4 +1,5 @@
 import States from './states';
+import StateFactory from './state-factory';
 import Modes from './modes';
 
 import Dice from './dice';
@@ -21,13 +22,19 @@ class App {
     }
 
     start() {
-        this._transitionTo(States.CHOOSE_MODE);
+        this.transitionTo(States.CHOOSE_MODE);
     }
 
-    _transitionTo(state) {
-        this._view.transitionTo(state);
-        this._model.setState(state);
+    transitionTo(state) {
+        const oldStateInstance = this._model.getState();
+        if (oldStateInstance) oldStateInstance.onExit();
 
+        this._model.setState(StateFactory.getInstance(state));
+        this._view.transitionTo(state);
+
+        this._model.getState().onEnter(this);
+
+        /*
         switch (state) {
             case States.CHOOSE_MODE:
                 this.debug('choose mode');
@@ -108,32 +115,49 @@ class App {
                 this._view.setScore(score);
                 break;
         }
+        */
+    }
+
+    setMode(mode) {
+      this._model.setMode(mode);
+    }
+
+    getMode() {
+      return this._model.getMode();
+    }
+
+    getState() {
+      return this._model.getState();
+    }
+
+    setScore(score) {
+      this._view.setScore(score);
     }
 
     _registerEventListeners() {
-        Tiles.registerClickListeners(e => {
-            if (this._model.getState() === States.CHOOSE) {
-                Tiles.toggleTile(e.target);
-            }
-        });
+        // Tiles.registerClickListeners(e => {
+            // if (this._model.getState() === States.CHOOSE) {
+                // Tiles.toggleTile(e.target);
+            // }
+        // });
 
-        document.querySelector('#use-tiles-button').addEventListener('click', () => {
-            if (this._model.getState() === States.CHOOSE) {
-                if (Dice.getDiceSum() === Tiles.getSelectedTileSum()) {
-                    Tiles.useSelectedTiles();
+        // document.querySelector('#use-tiles-button').addEventListener('click', () => {
+            // if (this._model.getState() === States.CHOOSE) {
+                // if (Dice.getDiceSum() === Tiles.getSelectedTileSum()) {
+                    // Tiles.useSelectedTiles();
+//
+                    // this._transitionTo(States.CHECK_WIN);
+                // }
+            // }
+        // });
 
-                    this._transitionTo(States.CHECK_WIN);
-                }
-            }
-        });
-
-        document.querySelector('#roll-button').addEventListener('click', () => {
-            if (this._model.getState() === States.ROLL) {
-                Dice.roll();
-
-                this._transitionTo(States.EVALUATE_ROLL);
-            }
-        });
+        // document.querySelector('#roll-button').addEventListener('click', () => {
+            // if (this._model.getState() === States.ROLL) {
+                // Dice.roll();
+//
+                // this._transitionTo(States.EVALUATE_ROLL);
+            // }
+        // });
 
         document.querySelector('#play-again-button').addEventListener('click', e => {
             e.preventDefault();
