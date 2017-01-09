@@ -37,11 +37,6 @@ class App {
     getMode() {
       return this._model.getMode();
     }
-
-    debug(state) {
-        console.log(state);
-        document.querySelector('.debug-state').textContent = state;
-    }
 }
 
 const closeTheTab = new App();
