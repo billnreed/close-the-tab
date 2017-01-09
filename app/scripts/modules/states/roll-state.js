@@ -2,8 +2,8 @@ import App from '../app';
 
 import States from '../states';
 
-import Tiles from '../tiles';
 import Dice from '../dice';
+import Tiles from '../tiles';
 
 class RollState {
     constructor() {}

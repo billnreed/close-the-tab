@@ -1,6 +1,7 @@
 import App from '../app';
-import States from '../states';
+
 import Modes from '../modes';
+import States from '../states';
 
 class ChooseModeState {
     constructor() {}
