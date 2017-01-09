@@ -1,3 +1,5 @@
+//TODO move selectors to views
+
 import App from '../app';
 
 import Modes from '../modes';

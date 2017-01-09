@@ -38,7 +38,6 @@ class AppView {
     }
 
     _addStateClass(state) {
-        console.log('add state class', this._stateClasses[state])
         this._el.classList.add(this._stateClasses[state])
     }
 }

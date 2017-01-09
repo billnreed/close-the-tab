@@ -21,8 +21,10 @@ stateInstances[States.RESET_DICE] = (new ResetDiceState());
 stateInstances[States.WIN] = (new WinState());
 stateInstances[States.LOSE] = (new LoseState());
 
-function getInstance(state) {
-  return stateInstances[state];
-};
+class StateFactory {
+    static getInstance(state) {
+        return stateInstances[state];
+    }
+}
 
-export default {getInstance: getInstance}
+export default StateFactory;

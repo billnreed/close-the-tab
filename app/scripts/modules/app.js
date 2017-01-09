@@ -37,6 +37,10 @@ class App {
     getMode() {
       return this._model.getMode();
     }
+
+    setScore(score) {
+      this._view.setScore(score);
+    }
 }
 
 const closeTheTab = new App();
