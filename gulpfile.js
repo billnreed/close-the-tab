@@ -28,15 +28,25 @@ gulp.task('styles', () => {
 });
 
 gulp.task('scripts', () => {
-
-    const b = browserify({
-        entries: 'app/scripts/main.js',
+    browserify({
+        entries: 'app/scripts/home/main.js',
         transform: babelify,
         debug: true
-    });
+    }).bundle()
+        .pipe(source('home.js'))
+        .pipe($.plumber())
+        .pipe(buffer())
+        .pipe($.sourcemaps.init({loadMaps: true}))
+        .pipe($.sourcemaps.write('.'))
+        .pipe(gulp.dest('.tmp/scripts'))
+        .pipe(reload({stream: true}));
 
-    return b.bundle()
-        .pipe(source('bundle.js'))
+    return browserify({
+        entries: 'app/scripts/close-the-tab/main.js',
+        transform: babelify,
+        debug: true
+    }).bundle()
+        .pipe(source('close-the-tab.js'))
         .pipe($.plumber())
         .pipe(buffer())
         .pipe($.sourcemaps.init({loadMaps: true}))
@@ -109,7 +119,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
+gulp.task('serve', ['styles', 'fonts', 'scripts'], () => {
     browserSync({
         notify: false,
         port: 9000,

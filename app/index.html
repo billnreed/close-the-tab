@@ -26,11 +26,21 @@
     <div class="centered-group">
         <a href="#" id="open-the-tab-button">Open the box</a>
     </div>
-    <script>
-        document.querySelector('#open-the-tab-button').addEventListener('click', () => {
-            window.open('close-the-tab.html', '_blank');
-        });
-    </script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/home/main.js -->
+    <script src="scripts/home.js"></script>
+    <!-- endbuild -->
+
+    <!-- <script> -->
+        <!-- document.querySelector('#open-the-tab-button').addEventListener('click', () => { -->
+            <!-- window.open('close-the-tab.html', '_blank'); -->
+        <!-- }); -->
+    <!-- </script> -->
 </body>
 
 </html>
