@@ -4,7 +4,6 @@
 
 @import "objects.centered-group";
 
-@import "components.app";
 @import "components.button";
 @import "components.choose-mode";
 @import "components.die";
@@ -12,6 +11,9 @@
 @import "components.playing-field";
 @import "components.tile";
 @import "components.win-message";
+
+@import "states.close-the-tab";
+@import "states.home";
 
 .debug-state {
     position: fixed;

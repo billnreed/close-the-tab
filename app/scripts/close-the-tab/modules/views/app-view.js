@@ -2,7 +2,7 @@ import States from '../states';
 
 class AppView {
     constructor() {
-        this._el = document.querySelector('.app');
+        this._el = document.querySelector('#close-the-tab');
 
         this._stateClasses = {};
         this._stateClasses[States.CHOOSE_MODE] = 'state-choose-mode';

@@ -11,11 +11,6 @@ class App {
     constructor() {
         this._view = new AppView();
         this._model = new AppModel();
-
-        if (localStorage.didWin == 'true') {
-            this._view.showWinMessage();
-            localStorage.didWin = 'false';
-        }
     }
 
     start() {
