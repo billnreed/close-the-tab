@@ -11,23 +11,21 @@ class ChooseModeState {
     }
 
     onEnter() {
-        this._view.addChooseClassicModeListener(this._handleChooseClassicMode);
-        this._view.addChooseBrianModeListener(this._handleChooseBrianMode);
+        this._view.addModeLinks();
+        this._view.addClickListeners(this._handleChooseMode);
     }
 
     onExit() {
-        this._view.removeChooseClassicModeListener(this._handleChooseClassicMode);
-        this._view.removeChooseBrianModeListener(this._handleChooseBrianMode);
+        this._view.removeClickListeners(this._handleChooseMode);
+        this._view.removeModeLinks();
     }
 
-    _handleChooseClassicMode() {
-        App.setMode(Modes.CLASSIC);
-        App.transitionTo(States.SETUP);
-    }
+    _handleChooseMode(e) {
+      const modeKey = e.target.getAttribute('data-mode');
+      const mode = Modes[modeKey];
 
-    _handleChooseBrianMode() {
-        App.setMode(Modes.BRIAN);
-        App.transitionTo(States.SETUP);
+      App.setMode(mode);
+      App.transitionTo(States.SETUP);
     }
 }
 
