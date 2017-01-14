@@ -29,7 +29,7 @@ gulp.task('styles', () => {
 
 gulp.task('scripts', () => {
     browserify({
-        entries: 'app/scripts/home/main.js',
+        entries: ['app/scripts/home/main.js', 'app/scripts/lib/json-storage.js'],
         transform: babelify,
         debug: true
     }).bundle()
@@ -42,7 +42,7 @@ gulp.task('scripts', () => {
         .pipe(reload({stream: true}));
 
     return browserify({
-        entries: 'app/scripts/close-the-tab/main.js',
+        entries: ['app/scripts/close-the-tab/main.js', 'app/scripts/lib/json-storage.js'],
         transform: babelify,
         debug: true
     }).bundle()

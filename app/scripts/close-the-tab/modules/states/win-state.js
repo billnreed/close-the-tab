@@ -1,10 +1,11 @@
 import App from '../app';
+import JsonStorage from '../../../lib/json-storage'
 
 class WinState {
     constructor() {}
 
     onEnter() {
-        localStorage.didWin = 'true';
+        JsonStorage.set('didWin', true);
         window.close();
     }
 
