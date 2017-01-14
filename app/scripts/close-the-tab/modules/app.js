@@ -1,8 +1,8 @@
-//TODO put the localStorage check in its own state
+import JsonStorage from '../../lib/json-storage';
 
 import States from './states';
 import StateFactory from './state-factory';
-import Modes from './modes';
+import Modes from '../../common/modes';
 
 import AppView from './views/app-view';
 import AppModel from './models/app-model';
@@ -14,7 +14,7 @@ class App {
     }
 
     start() {
-        this.transitionTo(States.CHOOSE_MODE);
+        this.transitionTo(States.SETUP);
     }
 
     transitionTo(state) {
@@ -28,11 +28,11 @@ class App {
     }
 
     setMode(mode) {
-      this._model.setMode(mode);
+      JsonStorage.set('mode', mode);
     }
 
     getMode() {
-      return this._model.getMode();
+      return JsonStorage.get('mode');
     }
 
     setScore(score) {
