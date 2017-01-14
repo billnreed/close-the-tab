@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>close the tab</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/reset-css/reset.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+</head>
+
+<body>
+    <div class="app">
+        <div class="centered-group win-message">
+            Nice win last time!
+        </div>
+        <div class="centered-group choose-mode">
+            <h1 class="choose-mode__title">Choose a mode</h1>
+            <div id="mode-choices" class="choose-mode__choices">
+            </div>
+        </div>
+        <div class="loss-screen centered-group">
+            <h1 class="loss-screen__title">You lost :(</h1>
+            <p>
+                Your score was <span id="score" class="loss-screen__score">123456789</span>.
+                <a href="#" id="play-again-button">Play again?</a>
+            </p>
+        </div>
+        <div class="playing-field">
+            <div class="tile-group centered-group"></div>
+            <div class="dice centered-group"></div>
+            <div class="centered-group">
+                <button id="roll-button" class="centered-group__item button button--roll">Roll</button>
+                <button id="use-tiles-button" class="centered-group__item button button--use-tiles">Use tiles</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/bundle.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>

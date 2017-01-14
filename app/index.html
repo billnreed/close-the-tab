@@ -23,40 +23,14 @@
 </head>
 
 <body>
-    <div class="app">
-        <div class="centered-group win-message">
-            Nice win last time!
-        </div>
-        <div class="centered-group choose-mode">
-            <h1 class="choose-mode__title">Choose a mode</h1>
-            <div id="mode-choices" class="choose-mode__choices">
-            </div>
-        </div>
-        <div class="loss-screen centered-group">
-            <h1 class="loss-screen__title">You lost :(</h1>
-            <p>
-                Your score was <span id="score" class="loss-screen__score">123456789</span>.
-                <a href="#" id="play-again-button">Play again?</a>
-            </p>
-        </div>
-        <div class="playing-field">
-            <div class="tile-group centered-group"></div>
-            <div class="dice centered-group"></div>
-            <div class="centered-group">
-                <button id="roll-button" class="centered-group__item button button--roll">Roll</button>
-                <button id="use-tiles-button" class="centered-group__item button button--use-tiles">Use tiles</button>
-            </div>
-        </div>
+    <div class="centered-group">
+        <a href="#" id="open-the-tab-button">Open the box</a>
     </div>
-
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/bundle.js"></script>
-    <!-- endbuild -->
+    <script>
+        document.querySelector('#open-the-tab-button').addEventListener('click', () => {
+            window.open('close-the-tab.html', '_blank');
+        });
+    </script>
 </body>
 
 </html>
