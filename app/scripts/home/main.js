@@ -38,11 +38,11 @@ function _createModeChoiceEl(modeKey) {
 document.querySelector('#open-the-tab-button').addEventListener('click', () => {
     const modeKey = _modeChoiceInputEls.filter(el => el.checked)[0].value;
     JsonStorage.set('mode', Modes[modeKey]);
+    document.querySelector('#home').classList.remove('is-celebrating');
     window.open('close-the-tab.html', '_blank');
 });
 
 // celebration check
-if (JsonStorage.get('didWin')) {
-    document.querySelector('#home').classList.add('is-celebrating')
-    JsonStorage.set('didWin', false);
+window.celebrate = function() {
+    document.querySelector('#home').classList.add('is-celebrating');
 }

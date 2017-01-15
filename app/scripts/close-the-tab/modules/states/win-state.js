@@ -5,7 +5,7 @@ class WinState {
     constructor() {}
 
     onEnter() {
-        JsonStorage.set('didWin', true);
+        window.opener.celebrate();
         window.close();
     }
 
