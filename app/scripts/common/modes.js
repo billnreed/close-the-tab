@@ -8,10 +8,10 @@ export default {
     numberOfTiles: 13,
     numberOfDice: 3,
     numberOfFaces: 9
-  },
+  }/*,
   TEST: {
     numberOfTiles: 1,
     numberOfDice: 1,
     numberOfFaces: 1
-  }
+  }*/
 }

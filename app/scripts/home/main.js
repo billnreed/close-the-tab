@@ -14,8 +14,10 @@ _modeChoiceInputEls[0].checked = true;
 function _createModeChoiceEl(modeKey) {
     const displayName = modeKey.toLowerCase();
     const inputId = `mode-${displayName}`;
+    const mode = Modes[modeKey];
 
     const containerEl = document.createElement('div');
+    containerEl.classList.add('mode-choice-container');
 
     const inputEl = document.createElement('input');
     inputEl.setAttribute('id', inputId);
@@ -28,8 +30,12 @@ function _createModeChoiceEl(modeKey) {
     labelEl.setAttribute('for', inputId);
     labelEl.textContent = displayName;
 
+    const descriptionEl = document.createElement('div');
+    descriptionEl.textContent = `${mode.numberOfDice} dice with ${mode.numberOfFaces} faces using ${mode.numberOfTiles} tiles.`
+
     containerEl.appendChild(inputEl);
     containerEl.appendChild(labelEl);
+    containerEl.appendChild(descriptionEl);
 
     return containerEl;
 }
