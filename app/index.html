@@ -27,11 +27,28 @@
         <div class="centered-group win-message">
             You shut the box!
         </div>
-        <div id="choose-mode" class="centered-group">
-            <h2>Choose a game mode</h2>
-        </div>
-        <div class="centered-group">
-            <a href="#" id="open-the-tab-button">Open the box</a>
+        <div class="side-by-side">
+            <div class="side-by-side__left launch-game">
+                <div id="choose-mode" class="choose-mode centered-group">
+                    <h2 class="choose-mode__title">Choose a game mode</h2>
+                </div>
+                <div class="centered-group">
+                    <a href="#" id="open-the-tab-button">Open the box</a>
+                </div>
+            </div>
+            <div class="side-by-side__right centered-group past-scores">
+                <table id="score-table" class="score-table">
+                    <thead>
+                        <tr>
+                            <th>mode</th>
+                            <th>score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stats-container">
+                    </tbody>
+                    <caption>Last 10 games</caption>
+                </table>
+            </div>
         </div>
     </div>
 

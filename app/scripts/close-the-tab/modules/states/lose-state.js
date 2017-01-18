@@ -1,3 +1,5 @@
+import StatTracker from '../../../common/stat-tracker';
+
 import App from '../app';
 
 import States from '../states';
@@ -14,6 +16,8 @@ class LoseState {
     onEnter() {
         const score = Tiles.getRemainingTiles().reduce((score, tile) => score + tile.getValue(), '');
         App.setScore(score);
+        StatTracker.addLoss(score);
+        window.opener.refreshStats();
 
         this._view.addPlayAgainListener(this._handlePlayAgain);
     }

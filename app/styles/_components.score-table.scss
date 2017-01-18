@@ -1,0 +1,17 @@
+.score-table {
+  thead > tr {
+    border-bottom: 1px solid #000;
+  }
+
+  tbody > tr > td {
+    border-right: 1px solid #000;
+
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+
+  td, th {
+    padding: $unit;
+  }
+}

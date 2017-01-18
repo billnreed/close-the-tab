@@ -1,4 +1,5 @@
 import JsonStorage from '../lib/json-storage';
+import StatTracker from '../common/stat-tracker';
 
 import Modes from '../common/modes';
 
@@ -17,7 +18,7 @@ function _createModeChoiceEl(modeKey) {
     const mode = Modes[modeKey];
 
     const containerEl = document.createElement('div');
-    containerEl.classList.add('mode-choice-container');
+    containerEl.classList.add('vertically-spaced');
 
     const inputEl = document.createElement('input');
     inputEl.setAttribute('id', inputId);
@@ -52,3 +53,31 @@ document.querySelector('#open-the-tab-button').addEventListener('click', () => {
 window.celebrate = function() {
     document.querySelector('#home').classList.add('is-celebrating');
 }
+
+//track stats
+window.refreshStats = function() {
+    const stats = StatTracker.getStats();
+    const statsContainerEl = document.querySelector('#stats-container');
+
+    //clear existing stats
+    while (statsContainerEl.children.length) {
+        statsContainerEl.removeChild(statsContainerEl.children[0]);
+    }
+
+    //add stats
+    stats.forEach(game => {
+        const statRowEl = document.createElement('tr');
+
+        const modeCellEl = document.createElement('td');
+        modeCellEl.textContent = game.mode;
+
+        const scoreCellEl = document.createElement('td');
+        scoreCellEl.textContent = game.score;
+
+        statRowEl.appendChild(modeCellEl);
+        statRowEl.appendChild(scoreCellEl);
+
+        statsContainerEl.appendChild(statRowEl);
+    });
+}
+refreshStats();
