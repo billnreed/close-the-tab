@@ -17,7 +17,7 @@ function _createModeChoiceEl(modeKey) {
     const mode = Modes[modeKey];
 
     const containerEl = document.createElement('div');
-    containerEl.classList.add('mode-choice-container');
+    containerEl.classList.add('vertically-spaced');
 
     const inputEl = document.createElement('input');
     inputEl.setAttribute('id', inputId);
