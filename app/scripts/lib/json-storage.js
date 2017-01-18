@@ -10,8 +10,7 @@ class JsonStorage {
   }
 
   set(key, value) {
-    if (this._hash[key] == value) return;
-
+    this._hash = this._retrieve();
     this._hash[key] = value;
     this._store();
   }

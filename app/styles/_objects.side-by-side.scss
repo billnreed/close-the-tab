@@ -1,0 +1,8 @@
+.side-by-side {
+  display: flex;
+
+  &__left,
+  &__right {
+    flex: 1;
+  }
+}
